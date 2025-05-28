@@ -2,14 +2,13 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
-#include <vector>
 
 using namespace std;
 
 int main(){
 
     //variables
-    vector<unsigned char> arr = vector<unsigned char>();
+    int arr[256] = {0};
     string str;
     stringstream ss;
 
@@ -21,13 +20,14 @@ int main(){
     int temp;
     while(ss.good()){
         ss >> temp;
-        arr.push_back(temp);
+        arr[temp]++;
     }
 
-    //sort and exit
-    sort(arr.begin(), arr.end());
-
-    for(int i : arr){cout << i << ' ';}
+    for(int i=0; i<256; i++){
+        for(int j=0; j<arr[i]; j++){
+            cout << i << ' ';
+        }
+    }
     cout << endl;
     return 0;
 }
