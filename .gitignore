@@ -29,4 +29,18 @@
 # Executables
 *.exe
 *.out
+*.out.dSYM
 *.app
+
+#temporary files and ds store
+.DS_Store
+*IGNORE*
+*TEMP*
+
+.vscode
+setSeed.*
+randSeed.*
+MinecraftClone/saves/**
+Depricated.txt
+MinecraftClone/src/VulkanMainTesting.zip
+*.tmp
