@@ -36,14 +36,14 @@ We now have the list $FV$ which defines the index in $t$ such that $t_{(FV_i)}$ 
 
 This allows us to create a list of possible configurations for $FV$ and the corresponding values of $g$. If $\exists i \in \mathbb{N},\ FV_i=FV_{i+1}$, then $FV = [0,\ \ldots,\ 0]$ and $g=1$. If not, and $\exists i \in \mathbb{N},\ FV_i=FV_{i+2}$, then $FV = [0,\ 1,\ \ldots,\ 0,\ 1]$ and $g=2$ because every other index in $FV$ contains the same value, but the adjacent indexes do not. Else if $\exists i \in \mathbb{N},\ FV_i=FV_{i+3}$, then $FV = [0,\ 1,\ 2,\ \ldots,\ 0,\ 1,\ 2]$ and $g=3$, and the same logic applies all the way up to $\exists i \in \mathbb{N},\ FV_i=FV_{i+m+1}$. This means that either:
 ```math
-\begin{matrix*}[l]
+\begin{array}{ll}
     FV&=&\begin{bmatrix}0,&\ldots&0\end{bmatrix}&\text{and}&g=1,&\text{or}\\
     FV&=&\begin{bmatrix}0,&1,&\ldots,&0,&1\end{bmatrix}&\text{and}&g=2,&\text{or}\\
     &\ \vdots&&&&\text{or}\\
     FV&=&\begin{bmatrix}0,&1,&2,&\ldots,&\hat{g},&0,&\ldots,&\hat{g}\end{bmatrix}&\text{and}&g=\hat{g},&\text{or}\\
     &\ \vdots&&&&\text{or}\\
     FV&=&\begin{bmatrix}0,&1,&2,&\ldots,&m,&0,&\ldots,&m\end{bmatrix}&\text{and}&g=m+1
-    \end{matrix*}
+    \end{array}
 ```
 
 We know that exactly one of these must be true for two reasons. First, the fact that these claims are constructed with else if statements makes them exclusive (if A, else if B, else if C all the way down). Second, either $\exists i \in \mathbb{N},\ FV_i=FV_{i+k}$ for some $k$ less than $m+1$ and one of the early statements are true, or it does not and the last statement is true because none of the previous are true and $FV_i$ will always equal $FV_{i+m+1}$. This shows us that $1 \leq g \leq m$. It also shows that $\frac{m+1}{g} \in \mathbb{N}$ because $m+1$ must be a multiple of $g$ so that the formulas of $FV_i = FV_{i+m+1}$, and $FV_i=FV_{i+g}$ line up. Finally, this situation shows that $\frac{n}{g} \in \mathbb{N}$ because $n$ must be a multiple of $g$ otherwise we will the cycle will not cleanly loop around the end of the list, and we will be able to disprove the assumed value of $g$. 
@@ -51,8 +51,8 @@ We know that exactly one of these must be true for two reasons. First, the fact 
 ### Finding $g$
 We now know that $FV = \left[0,\ 1,\ 2,\ \ldots,\ g,\ 0,\ \ldots,\ g\right]$ and $\frac{m+1}{g},\ \frac{n}{g} \in \mathbb{N}$. We will now also set up two more equations:
 ```math
-\begin{matrix*}[l] g \cdot j&=&n,&j \in \mathbb{N} \\
-j\cdot (m+1)&=&l \cdot n&j \in \mathbb{N},\ l \in \mathbb{N} \end{matrix*}
+\begin{array}{ll} g \cdot j&=&n,&j \in \mathbb{N} \\
+j\cdot (m+1)&=&l \cdot n&j \in \mathbb{N},\ l \in \mathbb{N} \end{array}
 ```
 This says that the number of disjoint cycles when moving around the list by jumps of $m+1$, which is $g$ because this is the same method we used to initialize $FV$, times the number of indexes/jumps in each disjoint cycle, $j$, is equal to the length of the list, $n$. This is because each index in the list needs to be in exactly one disjoint cycle by definition. Additionally, the number of jumps in each cycle, $j$, times the length of each jump, $m+1$, must equal some multiple, $l$, of the length of the list, $n$. This is because, in order to cycle around back to the same index in the list, the jumps must line back up with the same index within the list; in other words, the same remainder when divided by the length of the list, $n$. This means that the distance from the starting location, the left side of the equation, must be a multiple of $n$.
 
@@ -63,16 +63,16 @@ The final step in solving for the initial conditions is to solve for one free va
 
 To do this, we will add back in one of the initial equations in the form of $a_i \equiv t_i + \ldots + t_{i-m} \pmod{M}$. I am going to choose to use the equation for $a_m$ because it has the nice property of keeping all of its variables in the indexes from $0$ to $m$ (inclusively), and it does not wrap around the list or skip any of the lowest values of $t$:
 ```math
-\begin{matrix}
+\begin{array}{ll}
 a_m \equiv \displaystyle{\sum_{i=0}^{m}(t_i)\ (\bmod{\ M})}&\Rightarrow \\
-t_m = (a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i) + M)\ (\bmod{\ M})}\end{matrix*}
+t_m = (a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i) + M)\ (\bmod{\ M})}\end{array}
 ```
 
 Additionally, we know from our explicit formula that: $t_m = (CS_m + t_{(FV_m)} + M)\ (\bmod{\ M})$.
 ```math
-\begin{matrix}
-\therefore a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i)} = CS_m + t_{(FV_m)}
-\end{matrix}
+\begin{array}{ll}
+\therefore\ a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i)} = CS_m + t_{(FV_m)}
+\end{array}
 ```
 
 We will declare that the initial condition/free variable we want to solve for is the one at $m$, so we can replace $t_{(FV_m)}$ with $F$. Then we will clean up some variables:
