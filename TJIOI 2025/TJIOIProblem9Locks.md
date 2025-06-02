@@ -11,7 +11,7 @@ This problem statement is mostly from memory because the actual problem would no
 # Solution:
 
 ## Indexing
-For this problem, all indexes $i$ are assumed to be whole numbers that exist in the range including $0$ and up to but excluding $n$ unless otherwise specified, $i \in [0, n)$ and $i \in \mathbb{N}_0$. Therefore, any negative indexes or indexes greater than $n$ are assumed to be transformed by: $i=(i+n) \bmod n$, where $i$ becomes the remainder of $i+n$ when divided by $n$.
+For this problem, all indexes $i$ are assumed to be whole numbers that exist in the range including $0$ and up to but excluding $n$ unless otherwise specified, $i \in [0, n)$ and $i \in \mathbb{N}_0$. Therefore, any negative indexes or indexes greater than $n$ are assumed to be transformed by: $\displaystyle{i=(i+n) \bmod n}$, where $i$ becomes the remainder of $i+n$ when divided by $n$.
 
 ## Initial Equations
 What we want to do is to set up an equation for the number of times that the dial in the combination lock at index $i$ should be incremented/turned, which we will call $t_i$, based off of $a$, $n$, $m$, and constants as necessary. Therefore, the first equation we will create is as follows: $a_i \equiv t_i + \ldots + t_{i-m} \pmod{M}$. This equation says that the value of the dial at index $i$ in the final combination, $a_i$, is equal to the sum of the number of times each dial in the indexes from $i-m$ to $i$ (inclusively) is incremented/turned plus or minus some multiple of $M$ because of the overflow property of the lock. This equation is easy to come up with from the stated problem because each time a dial is incremented it affects all of the next $m$ dials. 
@@ -25,7 +25,7 @@ It is also important to note that the left side of the equation now only stores 
 We can now take our previous equation and transform it to use it as a recursive formula for $t$. First we can turn the equation into $a_{i+m+1}-a_{i+m} \equiv t_{i+m+1}-t_{i} \pmod{M}$ by offsetting the value of $i$. Then we can rearrange this equation to solve for $t_{i+m+1}$ from $t_{i}$: $\ t_{i+m+1} \equiv  a_{i+m+1}-a_{i+m} + t_{i} \pmod{M}$. This is very useful as it gives us a way to solve for select values of $t_i$ by using this equation as a recursive formula. However, we still need to decide on the initial conditions for this recursive formula. 
 
 ## Explicit Formula
-We will let the number of initial conditions needed to solve for all values of $t$ to be the number $g$. We will solve for this later. We can now show that $t$ can be solved by looping through each of the indexes from $0$ to $g-1$ (inclusively) and setting $t_i$ to zero, which means we are assuming the initial conditions are all zero until we need to set them to something else. Then, within the loop, we will walk through the entire rest of the cycle containing the starting index $i$ and set $t_{i+m+1}$ using the recursive formula: $\ t_{i+m+1} = (a_{i+m+1}-a_{i+m} + t_{i} +M) \bmod{M}$. To speed this up, we will also keep track of the cumulative sum of the offset $a_{i+m+1}-a_{i+m}$ from $t_i$ to $t_k$ in a new variable $CS$, such that $CS_k$, for all indexes $k$, is equal to the cumulative sum of $a_{k_2+m+1}-a_{k_2+m}$ for all indexes $k_2$ on the same cycle between the starting index $i$ and the ending index $k$. This allows us to write the equation $t_i = CS_i + \text{( the initial condition for the recursive formula) } t_{(FV_i)}$. With this declaration aside, we can get back to solving for the initial conditions and finish our explicit formula later. 
+We will let the number of initial conditions needed to solve for all values of $t$ to be the number $g$. We will solve for this later. We can now show that $t$ can be solved by looping through each of the indexes from $0$ to $g-1$ (inclusively) and setting $t_i$ to zero, which means we are assuming the initial conditions are all zero until we need to set them to something else. Then, within the loop, we will walk through the entire rest of the cycle containing the starting index $i$ and set $t_{i+m+1}$ using the recursive formula: $\ t_{i+m+1} = \displaystyle{(a_{i+m+1}-a_{i+m} + t_{i} +M)\ \bmod{M}}$. To speed this up, we will also keep track of the cumulative sum of the offset $a_{i+m+1}-a_{i+m}$ from $t_i$ to $t_k$ in a new variable $CS$, such that $CS_k$, for all indexes $k$, is equal to the cumulative sum of $a_{k_2+m+1}-a_{k_2+m}$ for all indexes $k_2$ on the same cycle between the starting index $i$ and the ending index $k$. This allows us to write the equation $t_i = CS_i + \text{( the initial condition for the recursive formula) } t_{(FV_i)}$. With this declaration aside, we can get back to solving for the initial conditions and finish our explicit formula later. 
 
 ## Free Variable Solution
 
@@ -64,14 +64,14 @@ The final step in solving for the initial conditions is to solve for one free va
 To do this, we will add back in one of the initial equations in the form of $a_i \equiv t_i + \ldots + t_{i-m} \pmod{M}$. I am going to choose to use the equation for $a_m$ because it has the nice property of keeping all of its variables in the indexes from $0$ to $m$ (inclusively), and it does not wrap around the list or skip any of the lowest values of $t$:
 ```math
 \begin{array}{ll}
-a_m \equiv \displaystyle{\sum_{i=0}^{m}(t_i)\ (\bmod{\ M})}&\Rightarrow \\
-t_m = (a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i) + M)\ (\bmod{\ M})}\end{array}
+a_m \equiv \displaystyle{\sum_{i=0}^{m}(t_i)\ }(\bmod{\ M})&\Rightarrow \\
+t_m = (a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i) + M)\ \bmod{M}}\end{array}
 ```
 
-Additionally, we know from our explicit formula that: $t_m = (CS_m + t_{(FV_m)} + M)\ (\bmod{\ M})$.
+Additionally, we know from our explicit formula that: $\displaystyle{t_m = (CS_m + t_{(FV_m)} + M)\ \bmod{M}}$.
 ```math
 \begin{array}{ll}
-\therefore\ a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i)} = CS_m + t_{(FV_m)}
+\displaystyle{\therefore\ a_m - \sum_{i=0}^{m-1}(t_i)} = CS_m + t_{(FV_m)}
 \end{array}
 ```
 
@@ -94,5 +94,5 @@ $\displaystyle{\therefore\ F = \frac{g(a_m - \sum_{i=0}^{m}(CS_i))}{m+1}}$.
 We now have a formula for the number of initial conditions that we need to set, $g = \gcd(m+1,n )$, we know that they will be over the range from index $0$ to index $g-1$ (inclusively), and we know that all but one of them will be zero. We also know that the last initial condition, $t_{(FV_i)}$, is equal to:\
 $\frac{g(a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)})}{m+1}$.\
 Finally, we know that $t_i = \displaystyle{(CS_i + t_{(FV_i)} + M)\ (\bmod{\ M})}$. This allows us to create a program to solve for $t$. We will first input $n$, $m$, and $a$ and define the lists $FV$, $CS$, and $t$ to be of length $n$. We will also calculate $g$ to be $\gcd(m+1,n )$. Then we will loop through all of the indexes $i$ from $0$ to $g-1$ (inclusively) and set $CS_i=0$ and $FV_i=i$. Then, we will jump through the list of $CS$ with jumps of length $m+1$ and set $CS_{j+m+1} = (a_{i+m+1}-a_{i+m} + CS_{i} + M)\ (\bmod{\ M})$ and $FV_j = i$ for each index $j$. When done with each cycle, we will test if it cleanly wraps back around to the start. If it does not and has a cumulative sum unequal to a multiple of $M$, then we will abort the algorithm and return that the solution does not exist. We will then set $t_i=0$ for all indexes $i$ between $0$ and $g-1$ inclusively. Note that our earlier exploration of $FV$ shows that this will set the free variable for every cycle exactly once, avoiding over-defining the system. Then we will set:\
-$t_{(FV_i)} = \displaystyle{(\frac{g(a_m - \sum_{i=0}^{m}(CS_i))}{m+1}+M) \ (\bmod{\ M})}$.\
-Finally, we will loop through $t$ from $g$ to $n-1$ inclusively and set $t_i = CS_i + t_{(FV_i)}$. One possible speed up is to notice that $\displaystyle{FV_i = i\ (\bmod{\ g})}$ and skip the $FV$ list entirely. Other than that our algorithm is complete, and we can output our solution stored in $t$.
+$t_{(FV_i)} = \displaystyle{(\frac{g(a_m - \sum_{i=0}^{m}(CS_i))}{m+1}+M) \ \bmod{M}}$.\
+Finally, we will loop through $t$ from $g$ to $n-1$ inclusively and set $t_i = CS_i + t_{(FV_i)}$. One possible speed up is to notice that $\displaystyle{FV_i = i\ \bmod{g}}$ and skip the $FV$ list entirely. Other than that our algorithm is complete, and we can output our solution stored in $t$.
