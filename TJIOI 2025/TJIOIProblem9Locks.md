@@ -81,8 +81,8 @@ We will declare that the initial condition/free variable we want to solve for is
 \begin{array}{ll}
 a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i)} = CS_m + F&\Rightarrow \\
 a_m - \displaystyle{\sum_{i=0}^{m-1}(CS_i + t_{(FV_i)})} = CS_m + F &\Rightarrow \\
-F = a_m - \displaystyle{\sum_{i=0}^{m-1}(CS_i) -\sum_{i=0}^{m-1} (t_{(FV_i)})} - CS_m&\Rightarrow \\
-F = a_m - \displaystyle{\sum_{i=0}^{m}(CS_i) -\sum_{i=0}^{m-1} (t_{(FV_i)})}
+F = a_m - \displaystyle{\sum_{i=0}^{m-1}(CS_i)\ -\sum_{i=0}^{m-1} (t_{(FV_i)})} - CS_m&\Rightarrow \\
+F = a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)\ -\sum_{i=0}^{m-1} (t_{(FV_i)})}
 \end{array}
 ```
 
