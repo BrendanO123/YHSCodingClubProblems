@@ -64,7 +64,7 @@ The final step in solving for the initial conditions is to solve for one free va
 To do this, we will add back in one of the initial equations in the form of $a_i \equiv t_i + \ldots + t_{i-m} \pmod{M}$. I am going to choose to use the equation for $a_m$ because it has the nice property of keeping all of its variables in the indexes from $0$ to $m$ (inclusively), and it does not wrap around the list or skip any of the lowest values of $t$:
 ```math
 \begin{array}{ll}
-a_m \equiv \displaystyle{\sum_{i=0}^{m}(t_i)\ (\bmod{M})}&\Rightarrow \\
+a_m \equiv \displaystyle{\sum_{i=0}^{m}(t_i) \pmod{M}}&\Rightarrow \\
 t_m = (a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i) + M)\ \bmod{M}}\end{array}
 ```
 
