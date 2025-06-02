@@ -37,7 +37,7 @@ We now have the list $FV$ which defines the index in $t$ such that $t_{(FV_i)}$ 
 This allows us to create a list of possible configurations for $FV$ and the corresponding values of $g$. If $\exists i \in \mathbb{N},\ FV_i=FV_{i+1}$, then $FV = [0,\ \ldots,\ 0]$ and $g=1$. If not, and $\exists i \in \mathbb{N},\ FV_i=FV_{i+2}$, then $FV = [0,\ 1,\ \ldots,\ 0,\ 1]$ and $g=2$ because every other index in $FV$ contains the same value, but the adjacent indexes do not. Else if $\exists i \in \mathbb{N},\ FV_i=FV_{i+3}$, then $FV = [0,\ 1,\ 2,\ \ldots,\ 0,\ 1,\ 2]$ and $g=3$, and the same logic applies all the way up to $\exists i \in \mathbb{N},\ FV_i=FV_{i+m+1}$. This means that either:
 ```math
 \begin{array}{llllll}
-    FV&=&\begin{bmatrix}0,&\ldots&0\end{bmatrix}&\text{and}&g=1,&\text{or}\\
+    FV&=&\begin{bmatrix}0,&\ldots,&0\end{bmatrix}&\text{and}&g=1,&\text{or}\\
     FV&=&\begin{bmatrix}0,&1,&\ldots,&0,&1\end{bmatrix}&\text{and}&g=2,&\text{or}\\
     &\ \vdots&&&&\text{or}\\
     FV&=&\begin{bmatrix}0,&1,&2,&\ldots,&\hat{g},&0,&\ldots,&\hat{g}\end{bmatrix}&\text{and}&g=\hat{g},&\text{or}\\
