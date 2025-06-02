@@ -68,9 +68,10 @@ a_m \equiv \displaystyle{\sum_{i=0}^{m}(t_i) \pmod{M}}&\Rightarrow \\
 t_m = (a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i) + M)\ \bmod{M}}\end{array}
 ```
 
-Additionally, we know from our explicit formula that: $\displaystyle{t_m = (CS_m + t_{(FV_m)} + M)\ \bmod{M}}$.
+Additionally, we know from our explicit formula that:
 ```math
 \begin{array}{ll}
+\displaystyle{t_m = (CS_m + t_{(FV_m)} + M)\ \bmod{M}} \\
 \displaystyle{\therefore\ \ a_m - \sum_{i=0}^{m-1}(t_i)} = CS_m + t_{(FV_m)}
 \end{array}
 ```
