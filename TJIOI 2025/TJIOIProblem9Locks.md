@@ -76,14 +76,14 @@ Additionally, we know from our explicit formula that: $t_m = (CS_m + t_{(FV_m)} 
 ```
 
 We will declare that the initial condition/free variable we want to solve for is the one at $m$, so we can replace $t_{(FV_m)}$ with $F$. Then we will clean up some variables:
-```math
+$$
 \begin{matrix*}[l]
 a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i)} = CS_m + F&\Rightarrow \\
 a_m - \displaystyle{\sum_{i=0}^{m-1}(CS_i + t_{(FV_i)})} = CS_m + F &\Rightarrow \\
 F = a_m - \displaystyle{\sum_{i=0}^{m-1}(CS_i) -\sum_{i=0}^{m-1} (t_{(FV_i)})} - CS_m&\Rightarrow \\
 F = a_m - \displaystyle{\sum_{i=0}^{m}(CS_i) -\sum_{i=0}^{m-1} (t_{(FV_i)})}
 \end{matrix*}
-```
+$$
 
 We have already declared that each free variable, $t_{(FV_i)}$, is either zero or $F$, so this becomes $F$ multiplied by the number of times that the free variable at $i$ is equal to the free variable at $m$ over a distance of $m$ cells. We will call this count $C_0$. Therefore:\
 $F(C_0+1) = a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)}\ \Rightarrow\ F = \frac{(a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)})}{C_0+1}$.\
