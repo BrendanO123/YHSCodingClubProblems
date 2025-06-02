@@ -18,7 +18,7 @@ int main(){
 
         //initial vars
     int mPrime = m+1;
-    int g = std :: gcd(mPrime, n);
+    int g = std :: gcd(mPrime, n); //requires c++17
 
     int a[n];
     for(int i=0; i<n; i++){cin >> a[i];}
