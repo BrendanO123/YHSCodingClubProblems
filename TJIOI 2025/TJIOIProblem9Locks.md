@@ -36,7 +36,7 @@ We now have the list $FV$ which defines the index in $t$ such that $t_{(FV_i)}$ 
 
 This allows us to create a list of possible configurations for $FV$ and the corresponding values of $g$. If $\exists i \in \mathbb{N},\ FV_i=FV_{i+1}$, then $FV = [0,\ \ldots,\ 0]$ and $g=1$. If not, and $\exists i \in \mathbb{N},\ FV_i=FV_{i+2}$, then $FV = [0,\ 1,\ \ldots,\ 0,\ 1]$ and $g=2$ because every other index in $FV$ contains the same value, but the adjacent indexes do not. Else if $\exists i \in \mathbb{N},\ FV_i=FV_{i+3}$, then $FV = [0,\ 1,\ 2,\ \ldots,\ 0,\ 1,\ 2]$ and $g=3$, and the same logic applies all the way up to $\exists i \in \mathbb{N},\ FV_i=FV_{i+m+1}$. This means that either:
 ```math
-\begin{array}{ll}
+\begin{array}{llllll}
     FV&=&\begin{bmatrix}0,&\ldots&0\end{bmatrix}&\text{and}&g=1,&\text{or}\\
     FV&=&\begin{bmatrix}0,&1,&\ldots,&0,&1\end{bmatrix}&\text{and}&g=2,&\text{or}\\
     &\ \vdots&&&&\text{or}\\
@@ -51,7 +51,7 @@ We know that exactly one of these must be true for two reasons. First, the fact 
 ### Finding $g$
 We now know that $FV = \left[0,\ 1,\ 2,\ \ldots,\ g,\ 0,\ \ldots,\ g\right]$ and $\frac{m+1}{g},\ \frac{n}{g} \in \mathbb{N}$. We will now also set up two more equations:
 ```math
-\begin{array}{ll} g \cdot j&=&n,&j \in \mathbb{N} \\
+\begin{array}{llll} g \cdot j&=&n,&j \in \mathbb{N} \\
 j\cdot (m+1)&=&l \cdot n&j \in \mathbb{N},\ l \in \mathbb{N} \end{array}
 ```
 This says that the number of disjoint cycles when moving around the list by jumps of $m+1$, which is $g$ because this is the same method we used to initialize $FV$, times the number of indexes/jumps in each disjoint cycle, $j$, is equal to the length of the list, $n$. This is because each index in the list needs to be in exactly one disjoint cycle by definition. Additionally, the number of jumps in each cycle, $j$, times the length of each jump, $m+1$, must equal some multiple, $l$, of the length of the list, $n$. This is because, in order to cycle around back to the same index in the list, the jumps must line back up with the same index within the list; in other words, the same remainder when divided by the length of the list, $n$. This means that the distance from the starting location, the left side of the equation, must be a multiple of $n$.
@@ -87,13 +87,13 @@ F = a_m - \displaystyle{\sum_{i=0}^{m}(CS_i) -\sum_{i=0}^{m-1} (t_{(FV_i)})}
 ```
 
 We have already declared that each free variable, $t_{(FV_i)}$, is either zero or $F$, so this becomes $F$ multiplied by the number of times that the free variable at $i$ is equal to the free variable at $m$ over a distance of $m$ cells. We will call this count $C_0$. Therefore:\
-$F(C_0+1) = a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)}\ \Rightarrow\ F = \frac{(a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)})}{C_0+1}$.\
+$F(C_0+1) = a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)}\ \Rightarrow\ F = \frac{\left(a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)}\right)}{C_0+1}$.\
 We know that if we extend the range for $C_0$ to include $m$, the count of times the free variable will increase by one because the free variable we added will be $F$ by definition. Therefore, we will replace $C_0+1$ with the count over this new range, which we will call $C$. The question now becomes how many times does the free variable complete a full cycle over a distance of $m+1$. This is the same as the floor of $m+1$ divided by the length of one cycle, which is $g$ from the above work. This means that $C= \lfloor(\frac{m+1}{g})\rfloor$. However, by definition, $g$ divides $m+1$, so we can ignore the floor operation and simple replace $C_0+1$ with $\frac{m+1}{g}$:\
-$\displaystyle{\therefore\ \ F = \frac{g(a_m - \sum_{i=0}^{m}(CS_i))}{m+1}}$.
+$\displaystyle{\therefore\ \ F} = \left(\frac{g}{m+1}\right)\left(\displaystyle{a_m - \sum_{i=0}^{m}(CS_i)}\right)$.
 
 ## Cleaning Up
-We now have a formula for the number of initial conditions that we need to set, $g = \gcd(m+1,n )$, we know that they will be over the range from index $0$ to index $g-1$ (inclusively), and we know that all but one of them will be zero. We also know that the last initial condition, $t_{(FV_i)}$, is equal to:\
-$\frac{g(a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)})}{m+1}$.\
+We now have a formula for the number of initial conditions that we need to set, $g = \gcd(m+1,n )$, we know that they will be over the range from index $0$ to index $g-1$ (inclusively), and we know that all but one of them will be zero. We also know that the last initial condition, $t_{(FV_m)}$, is equal to:\
+$\left(\frac{g}{m+1}\right)\left(\displaystyle{a_m - \sum_{i=0}^{m}(CS_i)}\right)$.\
 Finally, we know that $t_i = \displaystyle{(CS_i + t_{(FV_i)} + M)\ (\bmod{\ M})}$. This allows us to create a program to solve for $t$. We will first input $n$, $m$, and $a$ and define the lists $FV$, $CS$, and $t$ to be of length $n$. We will also calculate $g$ to be $\gcd(m+1,n )$. Then we will loop through all of the indexes $i$ from $0$ to $g-1$ (inclusively) and set $CS_i=0$ and $FV_i=i$. Then, we will jump through the list of $CS$ with jumps of length $m+1$ and set $CS_{j+m+1} = (a_{i+m+1}-a_{i+m} + CS_{i} + M)\ (\bmod{\ M})$ and $FV_j = i$ for each index $j$. When done with each cycle, we will test if it cleanly wraps back around to the start. If it does not and has a cumulative sum unequal to a multiple of $M$, then we will abort the algorithm and return that the solution does not exist. We will then set $t_i=0$ for all indexes $i$ between $0$ and $g-1$ inclusively. Note that our earlier exploration of $FV$ shows that this will set the free variable for every cycle exactly once, avoiding over-defining the system. Then we will set:\
-$t_{(FV_i)} = \displaystyle{(\frac{g(a_m - \sum_{i=0}^{m}(CS_i))}{m+1}+M) \ \bmod{M}}$.\
+$t_{(FV_m)} = \displaystyle{\left((\frac{g}{m+1})\Bigl(\displaystyle{a_m - \sum_{i=0}^{m}\left(CS_i \right)}\Bigr)+M \right) \ \bmod{M}}$.\
 Finally, we will loop through $t$ from $g$ to $n-1$ inclusively and set $t_i = CS_i + t_{(FV_i)}$. One possible speed up is to notice that $\displaystyle{FV_i = i\ \bmod{g}}$ and skip the $FV$ list entirely. Other than that our algorithm is complete, and we can output our solution stored in $t$. To see an implementation of this algorithm check out <i>LocksV2.cpp</i> in this directory.
