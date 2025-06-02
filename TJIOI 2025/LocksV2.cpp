@@ -25,15 +25,13 @@ int main(){
 
     //data could change to be allocated on heap
     unsigned int CS[n]; //cumulative sum from free variable/start of cycle to n
-    int FV[n]; //free variable giving a +C to turns at n/start of cycle containing n
 
     //main math
     for(int i=0; i<g; i++){
-        FV[i]=i; CS[i]=0;
+        CS[i]=0;
 
         int current =i, next = i+mPrime;
         while(next!=i){
-            FV[next]=i;
             CS[next]=(a[next]-a[(next-1+n)%n]+CS[current]+M)%M;
 
             current = next;
@@ -53,11 +51,11 @@ int main(){
     //solving for one +C because information was lost in simplification during setup
     int sum=0;
     for(int i=0; i<=m; i++){sum+=CS[i];}
-    C[FV[m]]=(g*(a[m]-sum)/mPrime+M)%M;
+    C[m%g]=(g*(a[m]-sum)/mPrime+M)%M;
 
 
     //output
-    for(int i=0; i<n; i++){cout << ((CS[i] + C[FV[i]]+M)%M) << ' ';}
+    for(int i=0; i<n; i++){cout << ((CS[i] + C[i%g]+M)%M) << ' ';}
     cout << endl;
     
     //STOP HERE FOR MAX TIME EFFICIENCY AND CORRECT OUTPUT FORMATING
@@ -66,7 +64,7 @@ int main(){
     //verifying solution
     int lock[n];
     int turns[n];
-    for(int i=0; i<n; i++){turns[i] = ((CS[i] + C[FV[i]]+M)%M); lock[i]=0;}
+    for(int i=0; i<n; i++){turns[i] = ((CS[i] + C[i%g]+M)%M); lock[i]=0;}
 
     for(int i=0; i<n; i++){
         for(int j=i; j<=i+m; j++){
