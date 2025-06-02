@@ -64,14 +64,14 @@ The final step in solving for the initial conditions is to solve for one free va
 To do this, we will add back in one of the initial equations in the form of $a_i \equiv t_i + \ldots + t_{i-m} \pmod{M}$. I am going to choose to use the equation for $a_m$ because it has the nice property of keeping all of its variables in the indexes from $0$ to $m$ (inclusively), and it does not wrap around the list or skip any of the lowest values of $t$:
 ```math
 \begin{array}{ll}
-a_m \equiv \displaystyle{\sum_{i=0}^{m}(t_i)\ }(\bmod{\ M})&\Rightarrow \\
+a_m \equiv \displaystyle{\sum_{i=0}^{m}(t_i)\ (\bmod{M})}&\Rightarrow \\
 t_m = (a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i) + M)\ \bmod{M}}\end{array}
 ```
 
 Additionally, we know from our explicit formula that: $\displaystyle{t_m = (CS_m + t_{(FV_m)} + M)\ \bmod{M}}$.
 ```math
 \begin{array}{ll}
-\displaystyle{\therefore\ a_m - \sum_{i=0}^{m-1}(t_i)} = CS_m + t_{(FV_m)}
+\displaystyle{\therefore\ \ a_m - \sum_{i=0}^{m-1}(t_i)} = CS_m + t_{(FV_m)}
 \end{array}
 ```
 
@@ -88,7 +88,7 @@ F = a_m - \displaystyle{\sum_{i=0}^{m}(CS_i) -\sum_{i=0}^{m-1} (t_{(FV_i)})}
 We have already declared that each free variable, $t_{(FV_i)}$, is either zero or $F$, so this becomes $F$ multiplied by the number of times that the free variable at $i$ is equal to the free variable at $m$ over a distance of $m$ cells. We will call this count $C_0$. Therefore:\
 $F(C_0+1) = a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)}\ \Rightarrow\ F = \frac{(a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)})}{C_0+1}$.\
 We know that if we extend the range for $C_0$ to include $m$, the count of times the free variable will increase by one because the free variable we added will be $F$ by definition. Therefore, we will replace $C_0+1$ with the count over this new range, which we will call $C$. The question now becomes how many times does the free variable complete a full cycle over a distance of $m+1$. This is the same as the floor of $m+1$ divided by the length of one cycle, which is $g$ from the above work. This means that $C= \lfloor(\frac{m+1}{g})\rfloor$. However, by definition, $g$ divides $m+1$, so we can ignore the floor operation and simple replace $C_0+1$ with $\frac{m+1}{g}$:\
-$\displaystyle{\therefore\ F = \frac{g(a_m - \sum_{i=0}^{m}(CS_i))}{m+1}}$.
+$\displaystyle{\therefore\ \ F = \frac{g(a_m - \sum_{i=0}^{m}(CS_i))}{m+1}}$.
 
 ## Cleaning Up
 We now have a formula for the number of initial conditions that we need to set, $g = \gcd(m+1,n )$, we know that they will be over the range from index $0$ to index $g-1$ (inclusively), and we know that all but one of them will be zero. We also know that the last initial condition, $t_{(FV_i)}$, is equal to:\
