@@ -63,27 +63,27 @@ The final step in solving for the initial conditions is to solve for one free va
 
 To do this, we will add back in one of the initial equations in the form of $a_i \equiv t_i + \ldots + t_{i-m} \pmod{M}$. I am going to choose to use the equation for $a_m$ because it has the nice property of keeping all of its variables in the indexes from $0$ to $m$ (inclusively), and it does not wrap around the list or skip any of the lowest values of $t$:
 ```math
-\begin{matrix*}[l] 
+\begin{matrix}
 a_m \equiv \displaystyle{\sum_{i=0}^{m}(t_i)\ (\bmod{\ M})}&\Rightarrow \\
 t_m = (a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i) + M)\ (\bmod{\ M})}\end{matrix*}
 ```
 
 Additionally, we know from our explicit formula that: $t_m = (CS_m + t_{(FV_m)} + M)\ (\bmod{\ M})$.
 ```math
-\begin{matrix*}[l]
+\begin{matrix}
 \therefore a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i)} = CS_m + t_{(FV_m)}
-\end{matrix*}
+\end{matrix}
 ```
 
 We will declare that the initial condition/free variable we want to solve for is the one at $m$, so we can replace $t_{(FV_m)}$ with $F$. Then we will clean up some variables:
-$$
-\begin{matrix*}[l]
+```math
+\begin{array}{ll}
 a_m - \displaystyle{\sum_{i=0}^{m-1}(t_i)} = CS_m + F&\Rightarrow \\
 a_m - \displaystyle{\sum_{i=0}^{m-1}(CS_i + t_{(FV_i)})} = CS_m + F &\Rightarrow \\
 F = a_m - \displaystyle{\sum_{i=0}^{m-1}(CS_i) -\sum_{i=0}^{m-1} (t_{(FV_i)})} - CS_m&\Rightarrow \\
 F = a_m - \displaystyle{\sum_{i=0}^{m}(CS_i) -\sum_{i=0}^{m-1} (t_{(FV_i)})}
-\end{matrix*}
-$$
+\end{array}
+```
 
 We have already declared that each free variable, $t_{(FV_i)}$, is either zero or $F$, so this becomes $F$ multiplied by the number of times that the free variable at $i$ is equal to the free variable at $m$ over a distance of $m$ cells. We will call this count $C_0$. Therefore:\
 $F(C_0+1) = a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)}\ \Rightarrow\ F = \frac{(a_m - \displaystyle{\sum_{i=0}^{m}(CS_i)})}{C_0+1}$.\
