@@ -5,7 +5,7 @@
 using namespace std;
 
 const unsigned int M = 998244353U;
-#define checkSolution true
+#define checkSolution true //control flow to enable solution checking code
 
 int main(){
 
@@ -45,17 +45,15 @@ int main(){
     cout << "YES" << endl;
 
     //making list of +C for equations
-    unsigned int C[g];
-    for(int i=0; i<g; i++){C[i]=0;}
 
     //solving for one +C because information was lost in simplification during setup
     int sum=0;
     for(int i=0; i<=m; i++){sum+=CS[i];}
-    C[m%g]=(g*(a[m]-sum)/mPrime+M)%M;
+    CS[m%g]=(g*(a[m]-sum)/mPrime+M)%M;
 
 
     //output
-    for(int i=0; i<n; i++){cout << ((CS[i] + C[i%g]+M)%M) << ' ';}
+    for(int i=0; i<n; i++){cout << ((CS[i] + CS[i%g]+M)%M) << ' ';}
     cout << endl;
     
     //STOP HERE FOR MAX TIME EFFICIENCY AND CORRECT OUTPUT FORMATING
@@ -64,7 +62,7 @@ int main(){
     //verifying solution
     int lock[n];
     int turns[n];
-    for(int i=0; i<n; i++){turns[i] = ((CS[i] + C[i%g]+M)%M); lock[i]=0;}
+    for(int i=0; i<n; i++){turns[i] = ((CS[i] + CS[i%g]+M)%M); lock[i]=0;}
 
     for(int i=0; i<n; i++){
         for(int j=i; j<=i+m; j++){
