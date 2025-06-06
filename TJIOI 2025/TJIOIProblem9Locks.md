@@ -5,8 +5,24 @@ This was the ninth problem out of thirteen at the TJIOI high school coding compe
 $n$ $m$\
 $a_0,$ $a_1,$ $a_2,$ $\ldots,$ $a_{n-1}$
 
+# Sample Cases:
+```math
+\begin{array}{l | l | l}
+    & \large{\text{Input:}} && \large{\text{Output:}}\\
+    \hline\\
+    \text{Case One:} & 6\ 3 && \text{YES}\\
+    & 1\ 1\ 1\ 1\ 2\ 2\ && 0\ 0\ 1\ 0\ 1\ 0\\
+    \\
+    \hline
+    \\
+    \text{Case Two:} &  6\ 3 && \text{NO}\\
+    & 1\ 1\ 1\ 2\ 2\ 2\ &&&\\
+    \\
+\end{array}
+```
+
 # Problem:
-For this problem you are given a list of numbers, $a$, that is $n$ elements long, order dependent, and may contain duplicates, such that $n \in \mathbb{N},\ n \leq 2 \cdot 10^5$, and $a \subset \lbrace{\mathbb{N}_0\ \cap\ \lbrace{0,\ \ldots,\ 998244352\rbrace}\rbrace}$. This list represents the code of a combination lock that you are trying to open. Your goal is to determine whether it is possible to open the lock by starting with all numbers at $0$ and transforming the string of numbers into the given combination by turning/incrementing the numbers one at a time. However, this problem has an annoying trick. Whenever a number on the lock is incremented, the next $m$ numbers are also increment at the same time, where $m$ is given at the start of the problem. Additionally, it is guaranteed that $0 \leq m<n$ and $m \in \mathbb{N}_0$. This means that, for the sample case given, where $n=6$ and $m=3$, starting at $\left[0,\ 0,\ 0,\ 0,\ 0,\ 0\right]$ and incrementing the first digit by one (index $=0$) will result in the digits becoming $\left[1,\ 1,\ 1,\ 1,\ 0,\ 0\right]$ instead of $\left[1,\ 0,\ 0,\ 0,\ 0,\ 0\right]$. This effect also wraps around the end of the sequence so incrementing the last digit will also affect the first $m$ digits. As a quick side note, all numbers in the combination lock are within the range $[0$, $998244353)$, so, whenever a number in the lock is at $998244352$ and is incremented, it overflows back down to $0$. We will call the exclusive upper bound of this range $M$, such that $M=998244353$. As mentioned above, your program must output whether it is possible to open the lock in this way. Additionally, if it is possible to open the lock, your program must also output a list of numbers $t$ where $t_i$ represents how many times to increment the number at position $i$ in order to create the given combination. Any of the possible ways to create the combination is fine for the answer as long as it correctly produces the combination. The program also must run within the set time limit and memory constraints.
+For this problem you are given a list of numbers, $a$, that is $n$ elements long, order dependent, and may contain duplicates, such that $n \in \mathbb{N},\ n \leq 2 \cdot 10^5$, and $a \subset \lbrace{\mathbb{N}_0\ \cap\ \lbrace{0,\ \ldots,\ 998244352\rbrace}\rbrace}$. This list represents the code of a combination lock that you are trying to open. Your goal is to determine whether it is possible to open the lock by starting with all numbers at $0$ and transforming the string of numbers into the given combination by turning/incrementing the numbers one at a time. However, this problem has an annoying trick. Whenever a number on the lock is incremented, the next $m$ numbers are also increment at the same time, where $m$ is given at the start of the problem. Additionally, it is guaranteed that $0 \leq m<n$ and $m \in \mathbb{N}_0$. For example, in the first sample case, $n=6$ and $m=3$. This means that, the lock starts at $\left[0,\ 0,\ 0,\ 0,\ 0,\ 0\right]$, and when the first digit is incremented by one, the lock becomes $\left[1,\ 1,\ 1,\ 1,\ 0,\ 0\right]$ instead of $\left[1,\ 0,\ 0,\ 0,\ 0,\ 0\right]$. This effect also wraps around the end of the sequence so incrementing the last digit will also affect the first $m$ digits. As a quick side note, all numbers in the combination lock are within the range $[0$, $998244353)$, so, whenever a number in the lock is at $998244352$ and is incremented, it overflows back down to $0$. We will call the exclusive upper bound of this range $M$, such that $M=998244353$. As mentioned above, your program must output whether it is possible to open the lock in this way. Additionally, if it is possible to open the lock, your program must also output a list of numbers $t$ where $t_i$ represents how many times to increment the number at position $i$ in order to create the given combination. Any of the possible ways to create the combination is fine for the answer as long as it correctly produces the combination. The program also must run within the set time limit and memory constraints.
 
 # Solution:
 
