@@ -10,14 +10,14 @@ $a_0,$ $a_1,$ $a_2,$ $\ldots,$ $a_{n-1}$
 \begin{array}{l | l | l}
     & \large{\text{Input:}} & \large{\text{Output:}}
     \\\hline
-    \\
+    &&\\
     \text{Case One:} & 6\ 3 & \text{YES}\\
     & 1\ 1\ 1\ 1\ 2\ 2\ & 0\ 0\ 1\ 0\ 1\ 0\\
     \\\hline
-    \\
+    &&\\
     \text{Case Two:} &  6\ 3 & \text{NO}\\
-    & 1\ 1\ 1\ 2\ 2\ 2\ &&\\
-    \\
+    & 1\ 1\ 1\ 2\ 2\ 2\ &\\
+    &&\\
 \end{array}
 ```
 
