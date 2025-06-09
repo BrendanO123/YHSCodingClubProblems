@@ -27,7 +27,7 @@ For this problem you are given a list of numbers, $a$, that is $n$ elements long
 # Solution:
 
 ## Indexing
-For this problem, all indexes $i$ are assumed to be whole numbers that exist in the range including $0$ and up to but excluding $n$ unless otherwise specified, $i \in [0, n)$ and $i \in \mathbb{N}_0$. Therefore, any negative indexes or indexes greater than $n$ are assumed to be transformed by: $\displaystyle{i=(i+n) \bmod n}$, where $i$ becomes the remainder of $i+n$ when divided by $n$.
+For this problem, all indexes $i$ are assumed to be whole numbers that exist in the range including $0$ and up to but excluding $n$ unless otherwise specified: $0 \leq i < n$ and $i \in \mathbb{N}_0$. Therefore, any negative indexes or indexes greater than $n$ are assumed to be transformed by: $\displaystyle{i=(i+n) \bmod n}$, where $i$ becomes the remainder of $i+n$ when divided by $n$.
 
 ## Initial Equations
 What we want to do is to set up an equation for the number of times that the dial in the combination lock at index $i$ should be incremented/turned, which we will call $t_i$, based off of $a$, $n$, $m$, and constants as necessary. Therefore, the first equation we will create is as follows: $a_i \equiv t_i + \ldots + t_{i-m} \pmod{M}$. This equation says that the value of the dial at index $i$ in the final combination, $a_i$, is equal to the sum of the number of times each dial in the indexes from $i-m$ to $i$ (inclusively) is incremented/turned plus or minus some multiple of $M$ because of the overflow property of the lock. This equation is easy to come up with from the stated problem because each time a dial is incremented it affects all of the next $m$ dials. 
