@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -232,18 +234,3 @@ struct BigInt{
             return num;
         }
 };
-
-int main(){
-    int num, div;
-    cin >> num; 
-
-    string temp;
-    getline(cin, temp);
-    stringstream ss;
-    
-    ss << temp.substr(1); ss >> div;
-    BigInt<4> intDiv=BigInt<4>((char*)&div), intNum=BigInt<4>((char*)&num);
-
-    cout << (intNum%intDiv).getLong() << endl;
-    return 0;
-}
