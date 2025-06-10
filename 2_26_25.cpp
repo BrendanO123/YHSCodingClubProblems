@@ -85,32 +85,32 @@ struct BigInt{
 
         //Normal Bit Opps
         inline BigInt<length> operator~() const{
-            BigInt<length> other = BigInt<length>();
+            BigInt<length> result = BigInt<length>();
             for(int i=0; i<length; i++){
-                other.arr[i] = ~arr[i];
+                result.arr[i] = ~arr[i];
             }
-            return other;
+            return result;
         }
         inline BigInt<length> operator&(const BigInt& other) const{
-            BigInt<length> other = BigInt<length>();
+            BigInt<length> result = BigInt<length>();
             for(int i=0; i<length; i++){
-                other.arr[i] = arr[i] & other.arr[i];
+                result.arr[i] = arr[i] & other.arr[i];
             }
-            return other;
+            return result;
         }
         inline BigInt<length> operator|(const BigInt& other) const{
-            BigInt<length> other = BigInt<length>();
+            BigInt<length> result = BigInt<length>();
             for(int i=0; i<length; i++){
-                other.arr[i] = arr[i] | other.arr[i];
+                result.arr[i] = arr[i] | other.arr[i];
             }
-            return other;
+            return result;
         }
         inline BigInt<length> operator^(const BigInt& other) const{
-            BigInt<length> other = BigInt<length>();
+            BigInt<length> result = BigInt<length>();
             for(int i=0; i<length; i++){
-                other.arr[i] = arr[i] ^ other.arr[i];
+                result.arr[i] = arr[i] ^ other.arr[i];
             }
-            return other;
+            return result;
         }
 
         /*-------------------------------------*/
