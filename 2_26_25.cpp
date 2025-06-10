@@ -120,6 +120,9 @@ struct Integer{
     inline bool operator==(const Integer& other) const{
         return this->operator>=(other) && this->operator<=(other);
     }
+    inline bool operator==(const int& other) const{
+        return this->operator>=(Integer((int*)&other)) && this->operator<=(Integer((int*)&other));
+    }
 
     Integer operator%(const Integer div) const{
         Integer num = *this;
@@ -127,7 +130,7 @@ struct Integer{
         Integer l = div;
 
         l <<= min(div.leadingZeros(), div.leadingZeros()-leadingZeros()+1);
-        if(div.getInt() == 0 || l.getInt() == 0){return num;}
+        if(div == 0 || l == 0){return num;}
 
         while(l>=div){
             diff -= l;
