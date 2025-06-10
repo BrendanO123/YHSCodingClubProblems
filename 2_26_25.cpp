@@ -12,7 +12,7 @@ struct Integer{
     Integer(const Integer& other){copy(other.arr, other.arr+4, arr);};
     Integer(){}
 
-    inline int getInt(){
+    inline int getInt() const{
         int returnInt;
         copy(arr, arr+4, (char*)(&returnInt));
         return returnInt;
@@ -120,6 +120,25 @@ struct Integer{
     inline bool operator==(const Integer& other) const{
         return this->operator>=(other) && this->operator<=(other);
     }
+
+    Integer operator%(const Integer div) const{
+        Integer num = *this;
+        Integer diff = *this;
+        Integer l = div;
+
+        l <<= min(div.leadingZeros(), div.leadingZeros()-leadingZeros()+1);
+        if(div.getInt() == 0 || l.getInt() == 0){return num;}
+
+        while(l>=div){
+            diff -= l;
+            if(diff.nonNeg()){num = diff;}
+            else{diff = num;}
+
+            l>>=1;
+        }
+
+        return num;
+    }
 };
 
 int main(){
@@ -131,20 +150,8 @@ int main(){
     stringstream ss;
     
     ss << temp.substr(1); ss >> div;
-    Integer fakeDiv=Integer(&div), fakeNum=Integer(&num);
+    Integer intDiv=Integer(&div), intNum=Integer(&num);
 
-    Integer l = Integer(&div);
-    l <<= min(fakeDiv.leadingZeros(), fakeDiv.leadingZeros()-fakeNum.leadingZeros()+1);
-    if(fakeDiv.getInt() == 0 || l.getInt() == 0){cout << "Infinity" << endl; return 0;}
-
-    Integer diff = fakeNum;
-    while(l >= fakeDiv){
-        diff -= l;
-        if(diff.nonNeg()){fakeNum = diff;}
-        else{diff = fakeNum;}
-        l>>=1;
-    }
-
-    cout << fakeNum.getInt() << endl;
+    cout << (intNum%intDiv).getInt() << endl;
     return 0;
 }
