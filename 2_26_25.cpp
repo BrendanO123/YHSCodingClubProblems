@@ -5,6 +5,8 @@
 
 using namespace std;
 
+//I didn't want to make you use makefiles or complex compilation steps so I coppied the code over to this cpp file.
+//Gabe is a dummy
 template <size_t length>
 struct BigInt{
     private:
