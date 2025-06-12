@@ -11,16 +11,35 @@ template <size_t length>
 struct BigInt{
     private:
         size_t len;
+        inline BigInt scaleToMax(BigInt num){
+            if(!num.nonNeg()){return minValue(num);}
+            if(num == 0){return 1;}
+            return maxValue(num);
+        }
     public:
         unsigned char arr[length];
+        BigInt maxValue(BigInt num){
+            BigInt<num.len> result = BigInt<num.len>();
+            result[num.len-1]=128;
+            result.Invert();
+            return result;
+        }
+        BigInt minValue(BigInt num){
+            BigInt<num.len> result = BigInt<num.len>();
+            result[num.len-1]=128;
+            return result;
+        }
 
         /*-------------------------------------*/
 
         //Constructors
-        BigInt(char* num) : len(length){copy((num), (num)+length, arr);}
+        BigInt(size_t inLength, char* num) : len(length){
+            copy((num), (num)+inLength, arr);
+            memset((void*)(arr + min(len, inLength)), 0, len-min(len, inLength));
+        }
         BigInt(const BigInt& other) : len(length){
             copy(other.arr, other.arr + min(len, other.len), arr); 
-            memset((void*)(arr + min(len, other.len)), 0, len);
+            memset((void*)(arr + min(len, other.len)), 0, len-min(len, other.len));
         }
         BigInt() : len(length){}
 
@@ -85,32 +104,32 @@ struct BigInt{
 
         //Normal Bit Opps
         inline BigInt<length> operator~() const{
-            BigInt<length> other = BigInt<length>();
+            BigInt<length> result = BigInt<length>();
             for(int i=0; i<length; i++){
-                other.arr[i] = ~arr[i];
+                result.arr[i] = ~arr[i];
             }
-            return other;
+            return result;
         }
         inline BigInt<length> operator&(const BigInt& other) const{
-            BigInt<length> other = BigInt<length>();
+            BigInt<length> result = BigInt<length>();
             for(int i=0; i<length; i++){
-                other.arr[i] = arr[i] & other.arr[i];
+                result.arr[i] = arr[i] & other.arr[i];
             }
-            return other;
+            return result;
         }
         inline BigInt<length> operator|(const BigInt& other) const{
-            BigInt<length> other = BigInt<length>();
+            BigInt<length> result = BigInt<length>();
             for(int i=0; i<length; i++){
-                other.arr[i] = arr[i] | other.arr[i];
+                result.arr[i] = arr[i] | other.arr[i];
             }
-            return other;
+            return result;
         }
         inline BigInt<length> operator^(const BigInt& other) const{
-            BigInt<length> other = BigInt<length>();
+            BigInt<length> result = BigInt<length>();
             for(int i=0; i<length; i++){
-                other.arr[i] = arr[i] ^ other.arr[i];
+                result.arr[i] = arr[i] ^ other.arr[i];
             }
-            return other;
+            return result;
         }
 
         /*-------------------------------------*/
@@ -177,7 +196,7 @@ struct BigInt{
         inline bool operator>(const BigInt& other) const{return other<*this;}
         inline bool operator==(const BigInt& other) const{return this->operator>=(other) && this->operator<=(other);}
         inline bool operator==(const int& other) const{
-            BigInt<length> comp = BigInt<length>((char*)&other);
+            BigInt<length> comp = BigInt<length>(sizeof(int), (char*)&other);
             return this->operator>=(comp) && this->operator<=(comp);
         }
 
@@ -204,13 +223,14 @@ struct BigInt{
         }
         BigInt operator/(const BigInt div) const{
             BigInt<length> num = BigInt<length>(*this);
+            if(div ==0){return scaleToMax(num);}
+
             BigInt<length> diff = BigInt<length>(*this);
             BigInt<length> q = BigInt<length>();
             BigInt<length> l = BigInt<length>(div);
 
             size_t i = min(div.leadingZeros(), div.leadingZeros()-leadingZeros()+1);
             l <<= i;
-            if(div == 0 || l == 0){return num;}
 
             while(l>=div){
                 diff -= l;
@@ -222,6 +242,29 @@ struct BigInt{
             }
 
             return q;
+        }
+        pair<BigInt<length>, BigInt<length>> divMod(const BigInt div) const{
+
+            BigInt<length> num = BigInt<length>(*this);
+            if(div ==0){return pair<BigInt<length>, BigInt<length>>(scaleToMax(num), num);}
+
+            BigInt<length> diff = BigInt<length>(*this);
+            BigInt<length> q = BigInt<length>();
+            BigInt<length> l = BigInt<length>(div);
+
+            size_t i = min(div.leadingZeros(), div.leadingZeros()-leadingZeros()+1);
+            l <<= i;
+
+            while(l>=div){
+                diff -= l;
+                if(diff.nonNeg()){num = diff; q[i>>3] |= 1<<(i&7);}
+                else{diff = num;}
+
+                l>>=1;
+                i--;
+            }
+
+            return pair<BigInt<length>, BigInt<length>>(q, num);
         }
 
         //Multiplication
