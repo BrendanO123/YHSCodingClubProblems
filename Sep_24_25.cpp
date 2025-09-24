@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <stack>
-#include <regex>
 
 using namespace std;
 
@@ -43,7 +42,7 @@ int main(){
         }
     }
 
-    if(bracketStack.size()){cout << "false" << endl; return 0;}
+    if(bracketStack.size()){cout << "false" << endl; return 0;} // unclosed bracket
     cout << "true" << endl;
     return 0;
 }
