@@ -22,7 +22,7 @@ int main(){
     int* a = new int[n]; int sum=0; //int a[n];
     for(int i=0; i<n; i++){cin >> a[i]; sum+=a[i];}
 
-    //prelimary calculations
+    //preliminary calculations
     //Note I need to account for some of the cells over flowing back to zero but not all
     //also turning high values into negatives and whatnot
     if(sum%(m+1)!=0){cout << "NO" << endl; return 0;}
@@ -31,10 +31,10 @@ int main(){
     int cols = n-df;
     int gap = n-m-1;
 
-    //memory allcation
+    //memory allocation
     float* mat = new float[(n+1)*(n+1)];
 
-    //basic initializtion loops
+    //basic initialization loops
     for(int y=0; y<n; y++){
         for(int x=0; x<n; x++){mat[getIndex(y,x)]=0;}
 
