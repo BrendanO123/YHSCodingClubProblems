@@ -4,6 +4,25 @@
 
 using namespace std;
 
+// this solution is meant for version 2 of today's challenge, so it prints either circle or not circle 
+// depending on if a point list forms a valid circle with one point being the center point
+// it expects an input of:
+/**
+ * t
+ * n
+ * x y
+ * ...
+ * n
+ * x y
+ * ...
+ * ...
+ * 
+ */
+// where t is the test case count and n is the number of points 
+// this is different from the first version of the problem where n is the number of points - 1 
+// because the center point is explicitly given and is not counted
+
+
 int main(){
     int t; string temp;
     cin >> t;
@@ -20,9 +39,15 @@ int main(){
         for(int j = 0; j < n; j++){
             cin >> x >> y; getline(cin, temp);
             auto e = pair<int, int>(x, y);
-            if(j <= 2){points.emplace_back(x, y);}
+            if(j <= 2){points.emplace_back(x, y);} // add first three points to list
 
-            if(j == 2){
+            if(j == 2){ 
+                // once you have three points we can provenly find the center or there is not a circle
+                // this is because if two points were valid centers, we would have an equilateral triangle with all three points
+                // but it is impossible to have all three points fall on integer coordinates with an equilateral triangle
+                // therefore this is exactly zero or one points that are equidistant from the other two points
+                // this gives us the center point
+
                 int dx = (points.at(2).first - points.at(0).first);
                 int dy = (points.at(2).second - points.at(0).second);
                 int d20 = dx * dx + dy * dy;
@@ -44,6 +69,7 @@ int main(){
                 }
             }
 
+            // once we have the center point, we just check if the new points lie along this circle
             if(j > 2){
                 int dx = e.first - center.first;
                 int dy = e.second - center.second;
