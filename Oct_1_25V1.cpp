@@ -41,7 +41,7 @@ int main(){
             auto e = pair<int, int>(x, y);
             if(j <= 2){points.emplace_back(x, y);} // add first three points to list
 
-            if(j == 2){ 
+            if(j == 2){
                 // once you have three points we can provenly find the center or there is not a circle
                 // this is because if two points were valid centers, we would have an equilateral triangle with all three points
                 // but it is impossible to have all three points fall on integer coordinates with an equilateral triangle
