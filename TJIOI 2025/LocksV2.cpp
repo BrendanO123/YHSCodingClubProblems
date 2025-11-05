@@ -7,6 +7,23 @@ using namespace std;
 const unsigned int M = 998244353U;
 #define checkSolution true //control flow to enable solution checking code
 
+/*
+Cookie Monster has an interesting digit combination lock, with each digit being an integer
+ranging from [0, 998 244 353). The lock starts out with all zeroes, and it is interesting because the
+digits are arranged in a circular fashion. When Cookie Monster goes to rotate one digit, the next m
+digits in the clockwise direction also change with it. Help Cookie Monster determine if a specific
+combination is reachable from all zeroes and give him a set of steps he can take to achieve it.
+
+Input
+The first line contains two space-separated integers n and m (1 <= n <= 2 * 10^5, 0 <= m < n).
+The second line consists of n space-separated integers a[1], a[2], ..., a[n] (0 <= a[i] < 998 244 353) which
+represent a specific combination.
+
+Output
+Output "YES" if Cookie Monster can create the combination or "NO" if he can't. 
+Then, if you said "YES", on the next line print n integers c[1], c[2], ..., c[n] each in the range [0, 998 244 353), 
+where c[i] corresponds to the number of times Cookie Monster should increase the digit on the i-th lock.
+*/
 int main(){
 
     //input

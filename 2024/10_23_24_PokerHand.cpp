@@ -4,6 +4,22 @@
 
 using namespace std;
 
+/*
+Best Poker Hand
+
+You are given an integer array `ranks` and a character array `suits`. You have 5 cards where the ith card has a 
+rank of ranks[i] and a suit of suits[i]. Ranks are given as a comma separated list on the first line, 
+and suits are given comma separated on the second line.
+
+The following are the types of poker hands you can make from best to worst:
+
+1. "Flush": Five cards of the same suit.
+2. "Three of a Kind": Three cards of the same rank.
+3. "Pair": Two cards of the same rank.
+4. "High Card": Any single card.
+
+Return a string representing the best type of poker hand you can make with the given cards.
+*/
 int main(){
     string temp; int itemp; char ctemp;
     int rankCounts[13] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

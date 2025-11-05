@@ -4,6 +4,12 @@
 
 using namespace std;
 
+/*
+Check If Points Form a Straight Line
+
+You are given a string `coordinates`, consisting of a space-separated list of "X,Y" coordinate pairs, 
+where X and Y are integers. Check if these points make a straight line in the XY plane.
+*/
 int main(){
     string temp;
     int x, y;

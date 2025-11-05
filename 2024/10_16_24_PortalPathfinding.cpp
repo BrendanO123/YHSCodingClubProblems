@@ -5,7 +5,14 @@
 
 using namespace std;
 
+/*
+Portal Pathfinding
 
+Given a list of portal starting and ending points, output if the path is possible.
+
+A portal is given as a letter followed by a comma-separated list of letters representing the portals it can go to.
+You'll be given a list of portals, with the final line being the comma-separated start and end portals.
+*/
 struct Node{
     bool visited;
     queue<char> out;

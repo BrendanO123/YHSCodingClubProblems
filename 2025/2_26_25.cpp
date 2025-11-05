@@ -5,7 +5,19 @@
 
 using namespace std;
 
-//I didn't want to make you use makefiles or complex compilation steps so I coppied the code over to this cpp file.
+/*
+Remainder Without Division
+
+Write a function that takes in two numbers and returns the remainder of the first number divided by the second number. 
+Your program cannot use the remainder, modulus, division, or multiplication built-in operators, nor any similar operators. 
+Only use addition, subtraction, or bit operations.
+
+For an extra challenge, take the number input in binary as two character arrays, and perform the remainder operation 
+without converting into an integer.
+*/
+
+
+//I didn't want to make you use makefiles or complex compilation steps so I copied the code over to this cpp file.
 template <size_t length>
 struct BigInt{
     private:

@@ -5,6 +5,29 @@
 
 using namespace std;
 
+/*
+Given a binary string A consisting of only ones and zeros and a number N, 
+output the number of binary strings B where B has the same length as A, B > A*, 
+and B contains exactly N ones and (length)-N zeros. Because this answer may be very large, 
+print the number modulo 998,244,353.
+
+*B > A if and only if the first digit that differs between A & B is a one in B and a zero in A. For example:
+A = 10010110
+B = 10011000
+
+Hint: the number of strings with length L containing N ones is equal to:
+L! / ((L - N)! * N!) = 
+((L - N - 1) * (L - N) * (L - N + 1) * … * (L - 2) * (L - 1) * L) / (1 * 2 * 3 * … * (N - 2) * (N - 1) * N)
+
+Input:
+Each test contains multiple test cases. The first line contains the number of test cases T.
+The first line of each test case contains the length of the string L and the positive integer N. 
+The second line of each test case contains the string A with length L.
+
+Output:
+For each test case, output an integer on a new line, the number of binary strings that satisfy the 
+conditions modulo 998,244,353.
+*/
 int moduloNCR(int n, int k){
     if(k < 0 || k > n){return 0;} // if k < 0 or n - k < 0 return invalid
 

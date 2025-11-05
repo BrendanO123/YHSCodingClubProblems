@@ -4,6 +4,20 @@
 
 using namespace std;
 
+/*
+Challenge #53: Sand Bars 🏝️
+You are given a two-dimensional grid representing an area of ocean. 
+Some cells contain sand bars (represented by 1) while others are just water (represented by 0). 
+An "island" is formed by connecting adjacent sand bars horizontally or vertically (not diagonally). 
+You need to count the total number of islands in the grid.
+
+Input Format 📝
+The first line contains two integers n and m representing the dimensions of the grid (rows and columns).
+The next n lines contain m binary digits each (0 or 1), representing the grid of sand bars and water.
+
+Output Format 🖥️
+An integer representing the number of distinct islands in the grid.
+*/
 int main(){
     int y, x;
     string str;

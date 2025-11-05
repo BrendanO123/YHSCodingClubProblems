@@ -5,6 +5,18 @@
 
 using namespace std;
 
+/*
+Keywords
+
+You are given a list of keywords and a sentence. Output True if the sentence contains all of the keywords, 
+and False otherwise. The sentence may contain other words not in the list of keywords.
+
+The first line of your input will be the list of keywords, separated by commas. The second line will be the sentence, 
+consisting of only lowercase letters and spaces. Do not assume that the words in the sentence are separated by spaces.
+
+CHALLENGE: Determine the time complexity of your solution, where k=keyword count and n=length of the sentence. 
+Can you solve this problem in O(n) time complexity?
+*/
 struct element{
     vector<char> word = vector<char>();
     bool found;

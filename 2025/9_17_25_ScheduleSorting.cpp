@@ -7,6 +7,32 @@
 
 using namespace std;
 
+/*
+Schedule Sorting
+
+A disgruntled ex has stolen your school schedule, and refuses to give it to you except in the form of cryptic clues. 
+These clues come in the form of "X before Y" (as in, "Physics before Math"). 
+Create a program that takes a list of these clues and outputs the correct order of your classes.
+
+Additionally, your ex is kind of stupid, and might be doing the clues wrong. 
+Your program needs to detect an "impossible" schedule layout: for example, having the clues 
+"Physics before Math", "Math before History", and "History before Physics" would result in an output 
+of "impossible", since if physics is before math, then it has to be before history, which is before physics,
+but physics is already before math, so it simply doesn't work.
+
+📃 Input Format
+
+<number of clues>
+X before Y
+Y before Z
+...
+
+📝 Output Format
+
+X
+Y
+Z
+*/
 int main(){
 
     //vars

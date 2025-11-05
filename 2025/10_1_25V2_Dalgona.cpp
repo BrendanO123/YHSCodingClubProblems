@@ -11,6 +11,33 @@ using namespace std;
 // it outputs the maximum count of points that fall on a circle with one of the points as its center
 // assuming the circle is drawn optimally with the optimal radius and center point 
 
+/*
+Dalgona
+
+ℹ️ UVA HSPC 2022, Problem A (https://acm.cs.virginia.edu/data/2022-contest.pdf)
+
+You have chosen the circle shape for the infamous Dalgona game! However, upon opening your tin, 
+you realize that somebody has already poked some holes into it. The cookie is represented on a two dimensional grid.
+
+There have also been some other points poked into the cookie, which are different from the center point. 
+Making the slightly sub-optimal but still decent cookie choice, you wonder if the holes poked into the cookie 
+will help you win this game or not. More specifically, you want to find how many of the poked points fall on the perimeter 
+of some circle. 
+
+Output the MAXIMUM AMOUNT OF POINTS that could lie on some circle, assuming the circle you chose 
+maximizes that amount. Don't just say whether the points lie on a circle or not. Output the most points that could 
+make up a circle. Solve this task quickly: you don’t have much time to win this game!
+
+📃 Input Format
+The first line of the input will be a single positive integer t ≤ 100. There will be t test cases that follow.
+The first line of each test case consists of a single integer n ≤ 150. The next n lines consists of two 
+single-space-separated integers −100 ≤ X[i], Y[i] ≤ 100 representing the coordinates of the i-th 
+point poked into the cookie.
+
+📝 Output Format
+Output the MAXIMUM AMOUNT OF POINTS that could lie on some circle, assuming the circle you chose 
+maximizes that amount.
+*/
 int getPointCount(vector<pair<int, int>> points, int index){
 
     unordered_map<int, int> radiusPointCount = unordered_map<int, int>();

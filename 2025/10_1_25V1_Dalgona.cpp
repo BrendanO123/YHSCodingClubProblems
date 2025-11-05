@@ -4,25 +4,30 @@
 
 using namespace std;
 
-// this solution is meant for version 2 of today's challenge, so it prints either circle or not circle 
-// depending on if a point list forms a valid circle with one point being the center point
-// it expects an input of:
-/**
- * t
- * n
- * x y
- * ...
- * n
- * x y
- * ...
- * ...
- * 
- */
-// where t is the test case count and n is the number of points 
-// this is different from the first version of the problem where n is the number of points - 1 
-// because the center point is explicitly given and is not counted
+/*
+Dalgona
 
+ℹ️ UVA HSPC 2022, Problem A (https://acm.cs.virginia.edu/data/2022-contest.pdf)
 
+You have chosen the circle shape for the infamous Dalgona game! However, upon opening your tin, 
+you realize that somebody has already poked some holes into it. The cookie is represented on a two dimensional grid, 
+defined by a center point.
+
+There have also been some other points poked into the cookie, which are different from the center point. 
+Making the slightly sub-optimal but still decent cookie choice, you wonder if the holes poked into the cookie 
+will help you win this game or not. More specifically, you want to check if all the poked points fall on the perimeter 
+of some circle. Solve this task quickly: you don’t have much time to win this game!
+
+📃 Input Format
+The first line of the input will be a single positive integer t ≤ 100. There will be t test cases that follow.
+The first line of each test case consists of a single integer n ≤ 150. The next n lines consists of two 
+single-space-separated integers −100 ≤ X[i], Y[i] ≤ 100 representing the coordinates of the i-th 
+point poked into the cookie.
+
+📝 Output Format
+For each test case, print on a new line “Circle” if the points given are on the perimeter of some circle centered 
+at the given central point, and “Not circle” otherwise.
+*/
 int main(){
     int t; string temp;
     cin >> t;

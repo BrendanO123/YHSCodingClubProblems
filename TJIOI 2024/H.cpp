@@ -5,6 +5,21 @@
 
 using namespace std;
 
+/*
+Cookie Monster’s favorite word can be represented as a string B. He currently has a string A and wants
+to use it to create as many copies of string B as possible.
+To do this, Cookie Monster will first rearrange the characters in A however he likes. Then, he will do the
+following: while string B is a prefix of A, keep removing that prefix. What is the maximum number of
+times he can remove the string B from A if he arranges the characters of A optimally?
+
+Input
+The first line of input contains the string A. The second line of input contains the string B.
+(1 ≤ |A|, |B| ≤ 105), where |A| indicates the length of string A. Strings A and B only contain lowercase
+alphabet characters.
+
+Output
+The maximum number of times Cookie Monster can remove string B from string A as a prefix.
+*/
 int main(){
 
     //input

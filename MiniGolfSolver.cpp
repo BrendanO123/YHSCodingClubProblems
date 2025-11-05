@@ -7,6 +7,42 @@
 
 using namespace std;
 
+/*
+The game, the ball can move up, down, left, or right, and the ball will continue in that direction until 
+it runs into a wall or falls into the hole. After running into a wall, 
+the ball will stop and be able to move in another direction again.
+
+Your goal is that, given a "tiny golf" board, composed of walls (X), empty spaces (_), the ball's starting 
+point (O , that is an O not a zero), and the hole/goal (4, it's a flag in case you were wondering), 
+you must print the minimum amount of moves to get the ball into the hole, as well as
+a specific sequence of moves (e.g. left right up) that gets the ball INTO the hole.
+
+--------
+
+Input:
+
+The first line of the input is the amount of rows in the golf grid (height).
+Following is the grid, with X for walls and _ for empty space. There will be an O where the ball starts and a 4 where the ball should finish
+
+Example input:
+
+8
+XXXXXX
+X____X
+X_XX_X
+X_XX_X
+X_XX_X
+X_XX_X
+XOXX4X
+XXXXXX
+*/
+
+/*
+This is one of the first complex problems I tackled in this club and is the only, non-single-file solution, 
+see also MiniGolfSolverMap.cpp and MiniGolfSolverMap.h
+*/
+
+
 //map that stores the # of steps to get to a square with the current best route and the move that was taken to get into that square
     //stored as a hash table bc most squares will not be landed on so a full array is overkill (also hash table is just as good)
 unordered_map<pair<int,int>, pair<int, pair<int, char>>> movesFromStart = unordered_map<pair<int,int>,pair<int, pair<int, char>>>();

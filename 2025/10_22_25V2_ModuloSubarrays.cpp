@@ -4,6 +4,20 @@
 
 using namespace std;
 
+/*
+There are N treasure chests in a row, chest i has a[i] gold coins (yes, some chests are cursed and have negative "gold"). 
+You must find the number of subarrays, formed out of consecutive elements of a, whose cumulative sum of a[i] is
+exactly divisible by K.
+
+📃 Input Format
+
+N K
+a1 a2 ... aN
+
+📝 Output Format
+
+A single integer, the number of subarrays.
+*/
 inline int plusMod(int a, int m){
     auto e = (a % m);
     return (e < 0 ? e + m : e);

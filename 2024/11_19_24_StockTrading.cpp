@@ -6,6 +6,18 @@
 
 using namespace std;
 
+/*
+Best Time to Buy and Sell Stock
+
+You are given a string of comma-separated integers representing an array of `prices` where `prices[i]` is 
+the price of a given stock on day `i`.
+
+You want to maximize your profit by choosing a _single day_ to buy one stock and choosing a different day in the 
+future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0. 
+You may assume all stock prices to be positive integers or zero.
+*/
 int main(){
     int temp;
     string str;

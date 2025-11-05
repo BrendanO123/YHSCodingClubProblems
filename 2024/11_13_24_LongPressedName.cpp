@@ -4,6 +4,17 @@
 
 using namespace std;
 
+/*
+Long Pressed Name
+
+Your friend is typing their name into a keyboard. Sometimes, when typing a character `c`, the key might get 
+long pressed, and the character will be typed 1 or more times.
+
+You examine the typed characters of the keyboard. Print `true` if it is possible that it was your friend's name, 
+with some characters (possibly none) being long pressed. Print `false` otherwise.
+
+Your input will be given as a single line, with the `name` and `typed` strings separated by a space.
+*/
 int main(){
     string temp; 
 
