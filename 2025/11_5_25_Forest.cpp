@@ -110,12 +110,13 @@ int main(){
 
     // length summation
     auto covered = unordered_set<int>();
-    for(int i=1; i <= n; i++){
+    dist += DFS(forest, covered, 1).second;
+    for(int i=2; i <= n; i++){
         if(covered.find(i) != covered.end()){continue;}
 
         auto node = forest.at(i);
         if(node == nullptr){continue;}
-        dist += treeLength(forest, covered, i);;
+        dist += treeLength(forest, covered, i);
     }
 
     cout << dist << endl;
