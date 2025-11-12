@@ -44,7 +44,8 @@ int main(){
     bool v6 = regex_match(address, v6Pattern);
     bool v4 = regex_match(address, v4Pattern);
 
-    if(!(v4 || v6)){cout << "Neither" << endl; return 0;}
+    if(!v4 && !v6){cout << "Neither" << endl; return 0;}
+    if(v6 && !v4){cout << "IPv6" << endl; return 0;}
 
     regex v4Delim = regex("\\.");
     for(
@@ -54,12 +55,10 @@ int main(){
     ){
         int x = stoi(iter->str());
         if(x>=256){
-            v4 = false;
-            cout << "IPv6" << endl; return 0;
+            if(!v6){cout << "Neither" << endl;}
+            else{cout << "IPv6" << endl;}
+            return 0;
         }
-
     }
-    if(!v4){cout << "IPv6" << endl; return 0;}
-    if(!v6){cout << "IPv4" << endl; return 0;}
     return 0;
 }
